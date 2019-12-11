@@ -1,6 +1,7 @@
 import React from "react";
 import data from "../../../data";
 import NumberButton from "./NumberButton";
+import { tsPropertySignature } from "@babel/types";
 // import { NumberButton } from "./NumberButton";
 //import any components needed
 // example of import from data.js. Note all the ../   This is how we move through folders.
@@ -9,7 +10,7 @@ import { numbers } from '../../../data'
 */
 //Import your array data to from the provided data file
 
-const Numbers = () => {
+const Numbers = props => {
   // STEP 2 - add the imported data to state
 
   console.log(data.numbers);
@@ -19,11 +20,17 @@ const Numbers = () => {
       {/* STEP 3 - Use .map() to iterate over your array data and return a button
        component matching the name on the provided file. Pass
        it any props needed by the child component*/}
+
       {data.numbers.map((e, index) => {
-        return <NumberButton key={index} buttonNumber={e} />;
+        return (
+          <NumberButton key={index} buttonNumber={e} funct={props.funct} />
+        );
       })}
     </div>
   );
 };
 
+// function getnum(num) {
+//   console.log(num);
+// }
 export default Numbers;
